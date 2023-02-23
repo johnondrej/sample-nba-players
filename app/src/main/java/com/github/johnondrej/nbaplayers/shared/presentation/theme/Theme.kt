@@ -1,4 +1,4 @@
-package com.github.johnondrej.nbaplayers.ui.theme
+package com.github.johnondrej.nbaplayers.shared.presentation.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
