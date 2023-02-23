@@ -11,8 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.github.johnondrej.nbaplayers.features.list.presentation.ListScreen
 import com.github.johnondrej.nbaplayers.features.playerdetail.presentation.PlayerDetailScreen
+import com.github.johnondrej.nbaplayers.features.playerlist.presentation.PlayerListScreen
 import com.github.johnondrej.nbaplayers.features.teamdetail.presentation.TeamDetailScreen
 import com.github.johnondrej.nbaplayers.shared.navigation.ComposeNavigator
 import com.github.johnondrej.nbaplayers.shared.navigation.Navigator
@@ -37,7 +37,7 @@ class MainActivity : ComponentActivity() {
                         startDestination = Route.PLAYER_LIST.routeDefinition
                     ) {
                         composable(route = Route.PLAYER_LIST.routeDefinition) {
-                            ListScreen()
+                            PlayerListScreen()
                         }
 
                         composable(route = Route.PLAYER_DETAIL.routeDefinition) {
