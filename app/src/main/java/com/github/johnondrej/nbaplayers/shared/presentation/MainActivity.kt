@@ -55,13 +55,26 @@ class MainActivity : ComponentActivity() {
                                 ?.toInt()
                                 ?.let { playerId ->
                                     PlayerDetailScreen(
-                                        playerId = playerId
+                                        playerId = playerId,
+                                        onTeamClick = { team ->
+                                            navigator.navigate(
+                                                route = Route.TEAM_DETAIL,
+                                                argumentValues = listOf(team.id.toString())
+                                            )
+                                        }
                                     )
                                 }
                         }
 
-                        composable(route = Route.TEAM_DETAIL.routeDefinition) {
-                            TeamDetailScreen()
+                        composable(
+                            route = Route.TEAM_DETAIL.routeDefinition
+                        ) { backStackEntry ->
+                            backStackEntry.arguments
+                                ?.getString(Route.TEAM_DETAIL.arguments.first())
+                                ?.toInt()
+                                ?.let { teamId ->
+                                    TeamDetailScreen(teamId = teamId)
+                                }
                         }
                     }
                 }

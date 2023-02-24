@@ -11,6 +11,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.github.johnondrej.nbaplayers.R
 import com.github.johnondrej.nbaplayers.shared.entities.model.domain.Player
+import com.github.johnondrej.nbaplayers.shared.entities.model.domain.Team
 import com.github.johnondrej.nbaplayers.shared.presentation.UiState
 import com.github.johnondrej.nbaplayers.shared.presentation.components.DetailParameter
 import com.github.johnondrej.nbaplayers.shared.presentation.components.DetailTitle
@@ -22,7 +23,8 @@ import org.koin.core.parameter.parametersOf
 @Composable
 fun PlayerDetailScreen(
     playerId: Int,
-    viewModel: PlayerDetailViewModel = koinViewModel { parametersOf(playerId) }
+    viewModel: PlayerDetailViewModel = koinViewModel { parametersOf(playerId) },
+    onTeamClick: (Team) -> Unit
 ) {
     when (val playerState = viewModel.uiStateStream.collectAsState().value.player) {
         is UiState.Empty -> {}
@@ -30,7 +32,10 @@ fun PlayerDetailScreen(
             Loader(modifier = Modifier.fillMaxSize())
         }
         is UiState.Loaded -> {
-            PlayerDetail(playerState.data)
+            PlayerDetail(
+                player = playerState.data,
+                onTeamClick = onTeamClick
+            )
         }
         is UiState.Error -> {
             ErrorMessage(
@@ -42,7 +47,10 @@ fun PlayerDetailScreen(
 }
 
 @Composable
-private fun PlayerDetail(player: Player) {
+private fun PlayerDetail(
+    player: Player,
+    onTeamClick: (Team) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -73,7 +81,7 @@ private fun PlayerDetail(player: Player) {
         DetailParameter(
             name = stringResource(id = R.string.player_parameter_team),
             value = player.team.fullName,
-            onClick = {},
+            onClick = { onTeamClick(player.team) },
         )
     }
 }

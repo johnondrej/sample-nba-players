@@ -11,5 +11,11 @@
     <string name="player_parameter_weight_value">%1$d pounds</string>
     <string name="player_parameter_team">Team</string>
 
+    <string name="team_parameter_abbreviation">Abbreviation</string>
+    <string name="team_parameter_city">City</string>
+    <string name="team_parameter_conference">Conference</string>
+    <string name="team_parameter_division">Division</string>
+    <string name="team_parameter_name">Name</string>
+
     <string name="parameter_unknown">Unknown</string>
 </resources>
