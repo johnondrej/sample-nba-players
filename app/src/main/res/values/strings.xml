@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">NBA Players</string>
+
+    <string name="general_loading">Loading…</string>
+    <string name="general_download_error">Error while downloading data. Please try again later.</string>
+    <string name="general_retry">Retry</string>
+
+    <string name="player_parameter_position">Position</string>
+    <string name="player_parameter_height">Height</string>
+    <string name="player_parameter_weight">Weight</string>
+    <string name="player_parameter_weight_value">%1$d pounds</string>
+    <string name="player_parameter_team">Team</string>
+
+    <string name="parameter_unknown">Unknown</string>
 </resources>

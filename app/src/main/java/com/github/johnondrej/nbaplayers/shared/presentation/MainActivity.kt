@@ -37,11 +37,27 @@ class MainActivity : ComponentActivity() {
                         startDestination = Route.PLAYER_LIST.routeDefinition
                     ) {
                         composable(route = Route.PLAYER_LIST.routeDefinition) {
-                            PlayerListScreen()
+                            PlayerListScreen(
+                                onPlayerClick = { player ->
+                                    navigator.navigate(
+                                        route = Route.PLAYER_DETAIL,
+                                        argumentValues = listOf(player.id.toString())
+                                    )
+                                }
+                            )
                         }
 
-                        composable(route = Route.PLAYER_DETAIL.routeDefinition) {
-                            PlayerDetailScreen()
+                        composable(
+                            route = Route.PLAYER_DETAIL.routeDefinition
+                        ) { backStackEntry ->
+                            backStackEntry.arguments
+                                ?.getString(Route.PLAYER_DETAIL.arguments.first())
+                                ?.toInt()
+                                ?.let { playerId ->
+                                    PlayerDetailScreen(
+                                        playerId = playerId
+                                    )
+                                }
                         }
 
                         composable(route = Route.TEAM_DETAIL.routeDefinition) {

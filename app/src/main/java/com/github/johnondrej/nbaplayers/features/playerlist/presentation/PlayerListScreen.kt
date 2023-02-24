@@ -26,7 +26,8 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun PlayerListScreen(
-    viewModel: PlayerListViewModel = koinViewModel()
+    viewModel: PlayerListViewModel = koinViewModel(),
+    onPlayerClick: (Player) -> Unit
 ) {
     val uiState by viewModel.uiStateStream.collectAsState()
     val players = uiState.players.collectAsLazyPagingItems()
@@ -38,6 +39,7 @@ fun PlayerListScreen(
     ) { paddingValues ->
         PlayersList(
             players = players,
+            onPlayerClick = onPlayerClick,
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
@@ -48,6 +50,7 @@ fun PlayerListScreen(
 @Composable
 private fun PlayersList(
     players: LazyPagingItems<Player>,
+    onPlayerClick: (Player) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LazyColumn(modifier = modifier) {
@@ -55,7 +58,7 @@ private fun PlayersList(
             player?.let { playerItem ->
                 PlayerItem(
                     player = playerItem,
-                    onClick = {}
+                    onClick = { onPlayerClick(playerItem) }
                 )
             }
         }
